@@ -9,6 +9,14 @@ private:
 			val(val),
 			pNext(pNext)
 		{}
+		Element(const Element& src) 
+			:
+			val(src.val)
+		{
+			if (src.pNext != nullptr) {
+				pNext = new Element(*src.pNext);
+			}
+		}
 
 		int GetVal() const {
 			return val;
@@ -33,6 +41,11 @@ private:
 
 		}
 
+		~Element() {
+			delete pNext;
+			pNext = nullptr;
+		}
+
 	private:
 		int val;
 		Element* pNext = nullptr;
@@ -40,6 +53,24 @@ private:
 	};
 
 public:
+
+	Stack() = default;
+
+	Stack(const Stack& src)
+	{
+		*this = src; // going to need default constructor
+	}
+	Stack& operator=(const Stack& src) 
+	{
+		if (!src.Empty()) {
+			pTop = new Element(*src.pTop);
+		}
+		return *this;
+	}
+	~Stack() {
+		delete pTop;
+		pTop = nullptr;
+	}
 	void Push(int val) {
 		pTop = new Element(val, pTop);
 	}
