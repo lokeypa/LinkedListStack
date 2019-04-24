@@ -17,17 +17,14 @@ private:
 				pNext = new Element(*src.pNext);
 			}
 		}
-
 		int GetVal() const {
 			return val;
 		}
-
 		Element* Disconnect() {
 			auto pTemp = pNext;
 			pNext = nullptr;
 			return pTemp;
 		}
-
 		int CountElement() const {
 
 			// recurssion using 
@@ -40,10 +37,9 @@ private:
 			}
 
 		}
-
 		~Element() {
 			delete pNext;
-			pNext = nullptr;
+			pNext = nullptr; 
 		}
 
 	private:
@@ -62,6 +58,11 @@ public:
 	}
 	Stack& operator=(const Stack& src) 
 	{
+		if (!Empty()) {
+			delete pTop;
+			pTop = nullptr;
+		}
+
 		if (!src.Empty()) {
 			pTop = new Element(*src.pTop);
 		}

@@ -142,8 +142,8 @@ void test7()
 void test8()
 {
 	Stack s;
-	s.Push( 5 );
-	s.Push( 3 );
+	s.Push(5);
+	s.Push(3);
 
 	{
 		Stack s2;
@@ -151,13 +151,35 @@ void test8()
 		s2.Pop();
 	}
 
-	if( s.Size() == 2 && s.Pop() == 3 )
+	if (s.Size() == 2 && s.Pop() == 3)
 	{
-		chili::print( "    Test 8 passed!\n" );
+		chili::print("    Test 8 passed!\n");
 	}
 	else
 	{
-		chili::print( "*** Test 8 failed!\n" );
+		chili::print("*** Test 8 failed!\n");
+	}
+}
+void test9()
+{
+	Stack s;
+	s.Push(5);
+	s.Push(3);
+
+	{
+		Stack s2;
+		s2.Push(234234);
+		s2 = s;
+		s2.Pop();
+	}
+
+	if (s.Size() == 2 && s.Pop() == 3)
+	{
+		chili::print("    Test 9 passed!\n");
+	}
+	else
+	{
+		chili::print("*** Test 9 failed!\n");
 	}
 }
 
@@ -178,6 +200,7 @@ int main()
 	test6();
 	test7();
 	test8();
+	test9();
 
 	_CrtDumpMemoryLeaks();
 	while( !_kbhit() );
