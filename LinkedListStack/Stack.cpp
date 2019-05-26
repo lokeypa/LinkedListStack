@@ -21,7 +21,12 @@ int Stack::Pop()
 
 int Stack::Size() const
 {
-	return 0;
+	if(Empty()) {
+		return 0;
+	}
+	else {
+		return pTop->CountElement();
+	}
 }
 
 bool Stack::Empty() const
@@ -47,4 +52,14 @@ Stack::Element * Stack::Element::Disconnect()
 	pNext = nullptr;
 	return tempPNext;
 
+}
+
+int Stack::Element::CountElement()
+{
+	if (pNext == nullptr) {
+		return 1;
+	}
+	else {
+		return 1 + pNext->CountElement();
+	}
 }
