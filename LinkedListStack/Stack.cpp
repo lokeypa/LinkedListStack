@@ -7,7 +7,15 @@ Stack::Stack(const Stack & src)
 
 Stack & Stack::operator=(const Stack & src)
 {
+	//check if the place data is to coppied is empty or not.
+	
+	if (!Empty()) {
+		delete pTop;
+		pTop = nullptr;
+	}
+
 	// TODO: insert return statement here
+	// doing the deep copt 
 	if (!src.Empty())
 	{
 		pTop = new Element(*src.pTop);
@@ -62,7 +70,7 @@ Stack::Element::Element(int value, Element * pNext)
 {
 }
 
-int Stack::Element::GetValue()
+int Stack::Element::GetValue() 
 {
 	return value;
 }
@@ -91,6 +99,7 @@ Stack::Element::~Element()
 	pNext = nullptr;
 }
 
+//copy constructor take the value and creating the new pointer untill it gets completed. 
 Stack::Element::Element(const Element & src)
 	:
 	value(src.value)
